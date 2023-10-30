@@ -13,6 +13,7 @@ import {
   storageKeys
 } from '../utils/storage'
 import ProfileScreen from './ProfileScreen'
+import CreateScreen from './CreateScreen'
 
 const Tab = createBottomTabNavigator()
 
@@ -37,7 +38,14 @@ function TabGroup() {
             iconName = focused
               ? 'ios-person-sharp'
               : 'ios-person-outline'
+          } else if (
+            route.name === 'Create'
+          ) {
+            iconName = focused
+              ? 'ios-add-circle-sharp'
+              : 'ios-add-circle-outline'
           }
+
           return (
             <Ionicons
               // @ts-ignore
@@ -67,6 +75,10 @@ function TabGroup() {
       <Tab.Screen
         name="Home"
         component={HomeScreen}
+      />
+      <Tab.Screen
+        name="Create"
+        component={CreateScreen}
       />
       <Tab.Screen
         name="Profile"
