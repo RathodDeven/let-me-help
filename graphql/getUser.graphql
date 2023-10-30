@@ -1,0 +1,8 @@
+query User($authPayLoad: AuthPayLoad) {
+  user(AuthPayLoad: $authPayLoad) {
+    id
+    username
+    email
+    createdAt
+  }
+}

@@ -5,7 +5,7 @@ import {
   Platform
 } from 'react-native'
 import Toast from 'react-native-toast-message'
-
+import React from 'react'
 import Constants from 'expo-constants'
 import {
   ApolloProvider,

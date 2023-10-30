@@ -2,6 +2,11 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
+export const storageKeys = {
+  USERNAME: 'username',
+  PASSWORD: 'password'
+}
+
 // Function to set data in storage
 export const setItem = async (
   key,

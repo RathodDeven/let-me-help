@@ -6,6 +6,13 @@ import {
 import React from 'react'
 import HomeScreen from './HomeScreen'
 import { Ionicons } from '@expo/vector-icons'
+import { useUserLazyQuery } from '../../generated'
+import { useProfileStore } from '../store/profileStore'
+import {
+  getItem,
+  storageKeys
+} from '../utils/storage'
+import ProfileScreen from './ProfileScreen'
 
 const Tab = createBottomTabNavigator()
 
@@ -18,8 +25,19 @@ function TabGroup() {
           color,
           size
         }) => {
-          let iconName =
-            'person-circle-sharp'
+          let iconName
+
+          if (route.name === 'Home') {
+            iconName = focused
+              ? 'ios-home-sharp'
+              : 'ios-home-outline'
+          } else if (
+            route.name === 'Profile'
+          ) {
+            iconName = focused
+              ? 'ios-person-sharp'
+              : 'ios-person-outline'
+          }
           return (
             <Ionicons
               // @ts-ignore
@@ -39,6 +57,10 @@ function TabGroup() {
         },
         headerStyle: {
           backgroundColor: '#e5e5e7'
+        },
+        headerTitleStyle: {
+          fontSize: 30,
+          fontWeight: 'bold'
         }
       })}
     >
@@ -48,13 +70,54 @@ function TabGroup() {
       />
       <Tab.Screen
         name="Profile"
-        component={HomeScreen}
+        component={ProfileScreen}
       />
     </Tab.Navigator>
   )
 }
 
 export default function Navigation() {
+  const [getUser] = useUserLazyQuery()
+  const setCurrentUser =
+    useProfileStore(
+      (state) => state.setCurrentUser
+    )
+  const fetchAndSetCurrentUser =
+    async () => {
+      try {
+        const username = await getItem(
+          storageKeys.USERNAME
+        )
+        const password = await getItem(
+          storageKeys.PASSWORD
+        )
+
+        if (!username || !password)
+          return
+
+        // fetch from api and set current user
+
+        const user = await getUser({
+          variables: {
+            authPayLoad: {
+              password,
+              username
+            }
+          }
+        })
+
+        if (!user.data) return
+
+        // @ts-ignore
+        setCurrentUser(user.data.user)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+  React.useEffect(() => {
+    fetchAndSetCurrentUser()
+  }, [])
   return (
     <NavigationContainer
       theme={{

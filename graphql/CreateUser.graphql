@@ -1,10 +1,12 @@
 mutation CreateUser(
   $authPayLoad: AuthPayLoad
   $email: String
+  $pushToken: String
 ) {
   createUser(
     AuthPayLoad: $authPayLoad
     email: $email
+    pushToken: $pushToken
   ) {
     id
     username
