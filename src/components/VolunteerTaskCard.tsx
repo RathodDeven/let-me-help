@@ -184,20 +184,22 @@ const VolunteerTaskCard = ({
       {/* attend button  */}
 
       <View className="flex flex-row items-center gap-x-4">
-        <Text
-          onPress={handleAttend}
-          disabled={attending}
-          className={clsx(
-            'text-white font-bold rounded-full px-6 py-2 text-base',
-            attending
-              ? 'bg-green-500'
-              : 'bg-brand'
-          )}
-        >
-          {attending
-            ? 'Attending'
-            : 'Attend'}
-        </Text>
+        {currentUser && (
+          <Text
+            onPress={handleAttend}
+            disabled={attending}
+            className={clsx(
+              'text-white font-bold rounded-full px-6 py-2 text-base',
+              attending
+                ? 'bg-green-500'
+                : 'bg-brand'
+            )}
+          >
+            {attending
+              ? 'Attending'
+              : 'Attend'}
+          </Text>
+        )}
 
         {/* organizer contact button */}
         <Text
