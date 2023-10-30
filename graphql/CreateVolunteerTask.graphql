@@ -1,0 +1,30 @@
+mutation CreateVolunteerTask(
+  $authPayLoad: AuthPayLoad
+  $volunteerTaskPayLoad: VolunteerTaskPayLoad
+) {
+  createVolunteerTask(
+    AuthPayLoad: $authPayLoad
+    VolunteerTaskPayLoad: $volunteerTaskPayLoad
+  ) {
+    id
+    name
+    description
+    location
+    dateTime
+    duration
+    images
+    volunteers {
+      id
+      username
+      email
+      createdAt
+    }
+    owner {
+      id
+      username
+      email
+      createdAt
+    }
+    createdAt
+  }
+}

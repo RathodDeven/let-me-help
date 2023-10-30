@@ -1,0 +1,26 @@
+query VolunteerTask(
+  $where: VolunteerTaskWhere
+) {
+  volunteerTask(where: $where) {
+    id
+    name
+    description
+    location
+    dateTime
+    duration
+    images
+    volunteers {
+      id
+      username
+      email
+      createdAt
+    }
+    owner {
+      id
+      username
+      email
+      createdAt
+    }
+    createdAt
+  }
+}

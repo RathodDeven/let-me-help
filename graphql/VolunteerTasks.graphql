@@ -1,0 +1,30 @@
+query VolunteerTasks(
+  $where: VolunteerTaskWhere
+  $sort: AnySort
+) {
+  volunteerTasks(
+    where: $where
+    sort: $sort
+  ) {
+    id
+    name
+    description
+    location
+    dateTime
+    duration
+    images
+    volunteers {
+      id
+      username
+      email
+      createdAt
+    }
+    owner {
+      id
+      username
+      email
+      createdAt
+    }
+    createdAt
+  }
+}

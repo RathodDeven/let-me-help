@@ -20,9 +20,7 @@ module.exports = {
         's-bg-d': '#2a2a2b',
         'p-border': '#e5e5e7',
         'p-border-d': '#343536',
-        brand: '#9378d8',
-        'brand-disabled': '#9c93ad',
-        lens: '#069b3f'
+        brand: '#007AFF'
       }
     }
   },

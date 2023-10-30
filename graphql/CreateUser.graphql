@@ -1,0 +1,14 @@
+mutation CreateUser(
+  $authPayLoad: AuthPayLoad
+  $email: String
+) {
+  createUser(
+    AuthPayLoad: $authPayLoad
+    email: $email
+  ) {
+    id
+    username
+    email
+    createdAt
+  }
+}
